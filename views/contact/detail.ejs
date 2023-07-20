@@ -1,0 +1,36 @@
+<%- 
+styles = null
+%>
+<div class="container mt-3">
+    <div class="row">
+        <div class="col-md-8">
+            <h2>Detail Contact</h2>
+            <% if (!contact) { %>
+            <div class="alert alert-danger" role="alert">
+                Contact not found!
+                <a href="/contact" class="card-link">Back</a>
+            </div>
+            <% } else{ %>
+            <div class="card" style="width: 18rem;">
+                <div class="card-body justify-content-around">
+                    <h5 class="card-title"><%= contact.name %></h5>
+                    <h6 class="card-subtitle mb-2 text-body-secondary"><%= contact.phone %></h6>
+                    <p class="card-text"><%= contact.email %></p>
+                    <a href="/contact" class="card-link">Back</a>
+                    <div class="mt-3 d-flex">
+                        <a href="/contact/edit/<%= contact.name %>" class="btn btn-primary btn-sm flex-fill me-2"
+                            type="button">
+                            <i class="bi bi-pencil-fill"></i> Edit</a>
+                        <form method="POST" action="/contact?_method=DELETE">
+                            <input type="hidden" name="name" value="<%= contact.name %>">
+                            <button type="submit" class="btn btn-danger btn-sm"
+                                onclick="return confirm('Are you sure for delete this contact?')"> <i
+                                    class="bi bi-trash-fill"></i> Delete </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <% } %>
+        </div>
+    </div>
+</div>
